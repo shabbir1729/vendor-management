@@ -39,7 +39,6 @@ Create a super user to use Django admin using `python manage.py createsuperuser`
 
 # STEP 6
 Run the development server using `python manage.py runserver`
-    ```
 
 # STEP 7
 Access the Django admin at `http://localhost:8000/admin/` OR `http://127.0.0.1:8000/admin/` to manage vendors, purchase orders, and historical performance.
