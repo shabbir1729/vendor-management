@@ -6,7 +6,7 @@ from django.contrib.auth import get_user_model
 from rest_framework.permissions import IsAuthenticated
 from rest_framework_simplejwt.authentication import JWTAuthentication
 from django.contrib.auth import get_user_model
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view,authentication_classes,permission_classes
 from rest_framework.response import Response
 import datetime
 from django.utils import timezone
@@ -37,6 +37,7 @@ class PurchaseOrderViewset(viewsets.ModelViewSet):
 
 
 @api_view(["GET"])
+@permission_classes((IsAuthenticated,))
 def get_vendor_performace(request,po_id):
 
     performace_obj = Vendor.objects.get(id=po_id)
@@ -45,6 +46,7 @@ def get_vendor_performace(request,po_id):
 
 
 @api_view(["POST"])
+@permission_classes((IsAuthenticated,))
 def acknowledge_po(request,po_id):
 
     po_object = PurchaseOrder.objects.get(id=po_id)
