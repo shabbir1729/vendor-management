@@ -49,9 +49,9 @@ Access the API at `http://localhost:8000/api/` or `http://127.0.0.1:8000/api/` f
 ## API Endpoints
 
 - `/api/token/` : To obtain acess token for user
-- `api/token/refresh/` : To get new access token using refresh token
+- `/api/token/refresh/` : To get new access token using refresh token
 - `/api/vendors/`: List and create vendor profiles.
 - `/api/purchase-orders/`: List and create purchase orders.
-- `api/vendors/<int:po_id>/performance`: Retrieve and update historical performance for a vendor.
-- `api/purchase_orders/<int:po_id>/acknowledge` : To acknowledge a purchase order and mark it as deliverd
+- `/api/vendors/<int:po_id>/performance`: Retrieve and update historical performance for a vendor.
+- `/api/purchase_orders/<int:po_id>/acknowledge` : To acknowledge a purchase order and mark it as deliverd
 
