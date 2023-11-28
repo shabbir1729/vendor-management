@@ -51,6 +51,7 @@ def acknowledge_po(request,po_id):
 
     po_object = PurchaseOrder.objects.get(id=po_id)
     po_object.acknowledgement_date = str(datetime.datetime.now())
+    po_object.status = 'completed'
     po_object.save()
     serializer = PurchaseOrderSerializer(data=po_object,partial=True)
     
