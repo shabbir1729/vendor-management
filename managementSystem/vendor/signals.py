@@ -1,22 +1,17 @@
-from django.db.models.signals import post_save, post_delete
+from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.db.models import Avg
 from django.utils import timezone
-
 from .models import *
-
-# vendor/signals.py
-from django.db.models.signals import post_save, post_delete
+from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.db.models import Avg, Count
 from django.utils import timezone
 from .models import PurchaseOrder, Vendor, HistoricalPerformance
 
+
 @receiver(post_save, sender=PurchaseOrder)
-# @receiver(post_delete, sender=PurchaseOrder)
 def calculate_performance_metrics(sender, instance, **kwargs):
-
-
 
     # Calculate On-Time Delivery Rate
     if instance.status == 'completed':
@@ -44,6 +39,7 @@ def calculate_performance_metrics(sender, instance, **kwargs):
 
     instance.vendor.save()
 
+
 @receiver(post_save, sender=Vendor)
 def initialize_vendor_performance_metrics(sender, instance, created, **kwargs):
     if created:
@@ -57,6 +53,7 @@ def initialize_vendor_performance_metrics(sender, instance, created, **kwargs):
             fulfillment_rate=instance.fulfillment_rate
         )
 
+
 def calculate_average_time_difference(time_tuples):
     if not time_tuples:
         return 0.0
@@ -66,13 +63,13 @@ def calculate_average_time_difference(time_tuples):
     return time_diff_sum / len(time_tuples)
 
 
-
 @receiver(post_save, sender=Vendor)
 def set_vendor_code(sender, instance, created, **kwargs):
 
     if created:
         instance.vendor_code = "vm%04d" % instance.id
         instance.save()
+
 
 @receiver(post_save, sender=PurchaseOrder)
 def set_purchade_order_code(sender, instance, created, **kwargs):

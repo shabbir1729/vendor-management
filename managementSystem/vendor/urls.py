@@ -14,5 +14,7 @@ urlpatterns = [
     path('api/', include(apiRouter.urls)),
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+    path('api/vendors/<int:po_id>/performance', get_vendor_performace,name="get_vendor_performance"),
+    path('api/purchase_orders/<int:po_id>/acknowledge',acknowledge_po,name='acknowledge_po')
 
 ]
